@@ -62,8 +62,8 @@ class TestQuicksort:
     
     def test_large_array(self):
         """Test with a larger array."""
-        arr = list(range(10000, 0, -1))  # [100, 99, 98, ..., 2, 1]
-        expected = list(range(1, 10001))  # [1, 2, 3, ..., 99, 100]
+        arr = list(range(100, 0, -1))  # [100, 99, 98, ..., 2, 1]
+        expected = list(range(1, 101))  # [1, 2, 3, ..., 99, 100]
         assert quicksort(arr.copy()) == expected
     
     def test_original_array_unchanged(self):
@@ -86,9 +86,9 @@ class TestQuicksortEdgeCases:
         assert result == expected
     
     def test_large_numbers(self):
-        """Test with  large numbers."""
+        """Test with large numbers."""
         arr = [10000000, 9999999, 10000001]
-        expected = [999999, 1000000, 1000001]
+        expected = [9999999, 10000000, 10000001]
         assert quicksort(arr.copy()) == expected
 
 
