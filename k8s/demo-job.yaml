@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: quicksort-demo-job
+  namespace: quicksort-example
+  labels:
+    app: quicksort-demo
+    version: v1
+spec:
+  ttlSecondsAfterFinished: 300  # Clean up job 5 minutes after completion
+  backoffLimit: 3  # Retry up to 3 times on failure
+  template:
+    metadata:
+      labels:
+        app: quicksort-demo
+        version: v1
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: quicksort-demo
+        image: gcr.io/quicksort-example-alpha/quicksort-example:latest
+        imagePullPolicy: Always
+        command: ["python", "quicksort.py"]
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        - name: PYTHONDONTWRITEBYTECODE
+          value: "1"

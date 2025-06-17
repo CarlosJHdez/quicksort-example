@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: quicksort-example
+  labels:
+    name: quicksort-example
+    purpose: demo-application
